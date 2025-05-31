@@ -1,45 +1,41 @@
 // Smooth scroll for nav links
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
-    });
+    }
   });
-  
-  // Highlight active nav link on scroll
-  window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
-    const scrollPos = window.scrollY + window.innerHeight - 100;
-  
-    sections.forEach(section => {
-      if (scrollPos >= section.offsetTop) {
-        section.classList.add('visible');
-  
-        // Animate skill items one by one
-        if (section.id === 'skills') {
-          const skills = section.querySelectorAll('.skill');
-          skills.forEach((skill, index) => {
-            setTimeout(() => {
-              skill.classList.add('visible');
-            }, index * 150);
-          });
-        }
-      }
-    });
-  
-    // Update nav active link
-    const triggerPos = window.scrollY + window.innerHeight / 3;
-    sections.forEach(section => {
-      if (triggerPos >= section.offsetTop && triggerPos < section.offsetTop + section.offsetHeight) {
-        const id = section.getAttribute('id');
-        document.querySelectorAll('.nav-link').forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-        });
-      }
-    });
+});
+
+// Highlight active nav link on scroll
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section');
+  const scrollPos = window.scrollY + window.innerHeight - 100;
+
+  sections.forEach(section => {
+    if (scrollPos >= section.offsetTop) {
+      section.classList.add('visible');
+    }
   });
-  /// Typewriter Effect
+
+  const triggerPos = window.scrollY + window.innerHeight / 3;
+  sections.forEach(section => {
+    const id = section.getAttribute('id');
+    if (
+      triggerPos >= section.offsetTop &&
+      triggerPos < section.offsetTop + section.offsetHeight
+    ) {
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+});
+
+// Typewriter Effect
 const phrases = [
   "MERN Stack Developer",
   "Full Stack Engineer",
@@ -79,4 +75,10 @@ typeLoop();
 // Dark Mode Toggle
 function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
+}
+
+// Hamburger Menu Toggle
+function toggleMenu() {
+  const navLinks = document.getElementById("navLinks");
+  navLinks.classList.toggle("show");
 }
