@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pooja Kumavat | MERN Stack Developer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header id="header">
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+    </section>
+<!-- About Me Section -->
+<section id="about" class="about-section">
+    <div class="about-content">
+        <h1>Hello, I'm <span class="highlight">Pooja Kumavat</span></h1>
+        <h2><span id="typing-text" class="typewriter"></span></h2>
+        <p>
+            I'm a <strong>MERN Stack Developer</strong> currently working at <strong>AnK IT Solutions</strong>, where I develop
+            secure and scalable applications for our client <strong>Jio Finance Services</strong>.
+            I also completed an internship at <strong>Eluminous Technologies</strong> building academic portals using Angular
+            and Laravel.
+            My personal projects include <strong>MoodSync</strong>, an emotion-based media recommender, and a range of
+            full-stack apps using MongoDB, Express, React, and Node.js.
+        </p>
+          
+        <div class="about-buttons">
+            <a href="resume\Pooja_Kumavat_Resume.docx" class="btn" target="_blank">📄 View Resume</a>
+            <a href="#projects" class="btn">📁 See Projects</a>
+        </div>
+    </div>
+    <div class="dark-toggle" onclick="toggleDarkMode()">🌙</div>
+</section>
+
+    <section id="skills" class="content-section">
+        <h2>Technical Skills</h2>
+        <div class="skill-cards">
+            <div class="skill-card">
+                <img src="images/js.png" alt="JavaScript" />
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card">
+                <img src="images/react.png" alt="React" />
+                <h3>React.js</h3>
+            </div>
+            <div class="skill-card">
+                <img src="images/node.png" alt="Node.js" />
+                <h3>Node.js</h3>
+            </div>
+            <div class="skill-card">
+                <img src="images/mongodb.png" alt="MongoDB" />
+                <h3>MongoDB</h3>
+            </div>
+            <!-- Add more as needed -->
+        </div>
+    </section>
+    
+    
+    <section id="projects" class="content-section">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="images/ecommerce.jpg" alt="E-commerce Website" />
+                <h3>E-commerce Website</h3>
+                <p>HTML5, CSS3, JavaScript, Node.js, Bootstrap, MySQL</p>
+            </div>
+            <div class="project-card">
+                <img src="images/hairoil.jpg" alt="Hair Oil Website" />
+                <h3>Hair Oil Website</h3>
+                <p>HTML, CSS, JavaScript, PHP, MySQL</p>
+            </div>
+            <div class="project-card">
+                <img src="images/code.jpg" alt="Sorting Algorithms" />
+                <h3>Sorting Algorithms</h3>
+                <p>Java | NetBeans</p>
+            </div>
+            <div class="project-card">
+                <img src="images/audiobook.jpg" alt="Audiobook App" />
+                <h3>Audiobook App</h3>
+                <p>Python | VS Code</p>
+            </div>
+            <div class="project-card">
+                <img src="images/kidslearning.jpg" alt="Kids World App" />
+                <h3>Kids World</h3>
+                <p>Java | Android Studio | Firebase</p>
+            </div>
+            <!-- ✅ MoodSync Project -->
+            <div class="project-card">
+                <img src="images/logo.png" alt="MoodSync Logo" class="logo-image" />
+                <h3>MoodSync</h3>
+                <p>Emotion-Based Playlist Recommender using MERN Stack & Face Detection</p>
+                <a href="https://glittering-taffy-d762d8.netlify.app/" target="_blank" class="btn visit-link">Visit Live</a>      </div>
+        </div>
+    </section>
+
+    <section id="contact" class="content-section">
+        <h2>Contact Me</h2>
+        <p>Email: poojakumavat232@gmail.com</p>
+        <p>Phone: +91 8412959454</p>
+        <p>Location: Mumbai, Maharashtra, India</p>
+        <p>GitHub: <a href="https://github.com/kumavatpooja" target="_blank">github.com/kumavatpooja</a></p>
+    </section>
+
+    <footer>
+        <p>© 2025 Pooja Kumavat. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Highlight active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const scrollPos = window.scrollY + window.innerHeight - 100;
+
+            sections.forEach(section => {
+                if (scrollPos >= section.offsetTop) {
+                    section.classList.add('visible');
+
+                    // Animate skill items one by one
+                    if (section.id === 'skills') {
+                        const skills = section.querySelectorAll('.skill');
+                        skills.forEach((skill, index) => {
+                            setTimeout(() => {
+                                skill.classList.add('visible');
+                            }, index * 150);
+                        });
+                    }
+                }
+            });
+
+            // Update nav active link
+            const triggerPos = window.scrollY + window.innerHeight / 3;
+            sections.forEach(section => {
+                if (triggerPos >= section.offsetTop && triggerPos < section.offsetTop + section.offsetHeight) {
+                    const id = section.getAttribute('id');
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
